@@ -383,7 +383,10 @@ function closeModal(e) {
 }
 
 function openFolder() {
-  if (currentFolderUrl) window.open(currentFolderUrl, '_blank');
+  if (!currentFolderUrl) return;
+  // https:// URL인지 확인 후 열기 (file:// 환경 대응)
+  const url = currentFolderUrl.startsWith('http') ? currentFolderUrl : 'https://drive.google.com';
+  window.open(url, '_blank');
 }
 
 // ── 이벤트 바인딩 ──
